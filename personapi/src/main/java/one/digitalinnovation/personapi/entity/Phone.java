@@ -8,8 +8,8 @@ import one.digitalinnovation.personapi.enums.PhoneType;
 
 import javax.persistence.*;
 
-@Entity // define this class like a table on databasse
-@Data // insert getters and setters
+@Entity
+@Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,10 +19,10 @@ public class Phone {
     @GeneratedValue(strategy = GenerationType.IDENTITY ) // auto increment command
     private Long id;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false) // this value is obrigatory
+    @Enumerated(EnumType.STRING) // definindo o tipo do conteudo como de acordo com do arquivo PhoneType
+    @Column(nullable = false)
     private PhoneType type;
 
-    @Column(nullable = false) // this value is obrigatory
+    @Column(nullable = false)
     private String number;
 }

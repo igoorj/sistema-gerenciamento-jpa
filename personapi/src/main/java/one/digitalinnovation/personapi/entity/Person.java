@@ -26,11 +26,15 @@ public class Person {
     @Column(nullable = false)
     private String lastName;
 
-    @Column(nullable = false, unique = true) // registers don't accept duplicated values
+    @Column(nullable = false, unique = true) // só aceita pessoas com cpf único
     private String cpf;
 
     private LocalDate birthDate;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}) // one person may have several numbers
+    @OneToMany(fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST,
+                       CascadeType.MERGE,
+                       CascadeType.REMOVE }
+    ) // one person may have several numbers
     private List<Phone> phones;
 }

@@ -3,8 +3,6 @@ package one.digitalinnovation.personapi.controller;
 import one.digitalinnovation.personapi.dto.MessageResponseDTO;
 import one.digitalinnovation.personapi.entity.Person;
 import one.digitalinnovation.personapi.repository.PersonRepository;
-import one.digitalinnovation.personapi.request.PersonDTO;
-import one.digitalinnovation.personapi.service.PersonNotFoundException;
 import one.digitalinnovation.personapi.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,49 +12,28 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/people")
+@RequestMapping("/people/")
 public class PersonController {
 
+    /*
+     *
+     * injetando a dependencia da classe Service que vai ser a responsável pelas regras de negócio
+     * */
     private PersonService personService;
-
-    // dependence injection
 
     @Autowired
     public PersonController(PersonService personService) {
         this.personService = personService;
     }
 
+    /*
+    *
+    * @RequestBody: Informa ao metodo que será passado um objeto do tipo Person através de uma requisição
+    * - Aqui é utilizado a classe MessageResponseDTO como uma instancia a ser retornada
+    * */
     @PostMapping
-    public MessageResponseDTO createPerson(@RequestBody @Valid PersonDTO personDTO) {
-        return personService.createPerson(personDTO);
-    }
-
-    /* Metodo de listagem de todos os usuarios cadastrados */
-
-    @GetMapping
-    public List<PersonDTO> listAll() {
-        return personService.listAll();
-    }
-
-    /* Metodo de busca de uma determinada pessoa por seu Id */
-
-    @GetMapping("/{id}")
-    public PersonDTO findById(@PathVariable Long id) throws PersonNotFoundException {
-        return personService.findById(id);
-    }
-
-    /* Metodo de deletar usuario */
-
-    @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Long id) throws PersonNotFoundException {
-        personService.delete(id);
-    }
-
-    /* Metodo de Atualização de Usuario */
-
-    @PutMapping("/{id}")
-    public void updateUser(@PathVariable Long id, @RequestBody @Valid PersonDTO personDTO) throws PersonNotFoundException {
-        personService.updateById(id, personDTO);
+    @ResponseStatus(HttpStatus.CREATED)
+    public MessageResponseDTO createPerson(@RequestBody Person person) {
+        return personService.createPerson(person);
     }
 }
