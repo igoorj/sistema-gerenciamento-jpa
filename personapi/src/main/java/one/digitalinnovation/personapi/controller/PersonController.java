@@ -53,4 +53,10 @@ public class PersonController {
         personService.delete(id);
     }
 
+    /* Metodo de Atualização de Usuario */
+
+    @PutMapping("/{id}")
+    public void updateUser(@PathVariable Long id, @RequestBody @Valid PersonDTO personDTO) throws PersonNotFoundException {
+        personService.updateById(id, personDTO);
+    }
 }

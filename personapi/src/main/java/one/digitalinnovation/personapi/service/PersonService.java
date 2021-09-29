@@ -74,4 +74,19 @@ public class PersonService {
         return personRepository.findById(id)
                 .orElseThrow(() -> new PersonNotFoundException(id));
     }
+
+    /* Metodo de atualizar usuario */
+
+    public MessageResponseDTO updateById(Long id, PersonDTO personDTO) throws PersonNotFoundException {
+
+        verifyExists(id);
+
+        Person personToUpdate = personMapper.toModel(personDTO);
+
+        Person personToSabe = personRepository.save(personToUpdate);
+        return MessageResponseDTO
+                .builder()
+                .message("Updated Person with success!")
+                .build();
+    }
 }

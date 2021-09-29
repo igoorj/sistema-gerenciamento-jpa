@@ -11,12 +11,13 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 import javax.validation.constraints.NotEmpty;
 
-@Entity // define this class like a table on databasse
+
 @Data // insert getters and setters
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class PhoneDTO {
+
 
     private Long id;
 
