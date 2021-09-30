@@ -29,7 +29,7 @@ public class Person {
     @Column(nullable = false, unique = true) // só aceita pessoas com cpf único
     private String cpf;
 
-    private LocalDate birthDate;
+    private String birthDate;
 
     @OneToMany(fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST,

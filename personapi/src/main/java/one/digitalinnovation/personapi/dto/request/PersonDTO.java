@@ -36,7 +36,7 @@ public class PersonDTO {
     @NotEmpty
     private String cpf;
 
-    private LocalDate birthDate;
+    private String birthDate;
 
     @Valid // valida cada um dos dados dos telefones passados
     @NotEmpty
