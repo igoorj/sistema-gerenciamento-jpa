@@ -65,6 +65,31 @@ public class PersonService {
                 .build();
     }
 
+    public MessageResponseDTO updateById(Long id, PersonDTO personDTO ) throws PersonNotFoundException {
+
+        Optional<Person> person = personRepository.findById(id);
+
+        if(person.isPresent()) { // verificando a requisição do usuário
+            Person personUpdate = person.get();
+            personUpdate.setFirstName(personDTO.getFirstName());
+            personUpdate.setLastName(personDTO.getLastName());
+            personUpdate.setCpf(personDTO.getCpf());
+            personUpdate.setPhones(personDTO.getPhones());
+            personUpdate.setBirthDate(personDTO.getBirthDate());
+
+            /* Retorna um objeto similar ao que foi salvo no banco */
+            Person personSaved = personRepository.save(personUpdate);
+            return MessageResponseDTO
+                    .builder()
+                    .message("Updated with success! Id " +personSaved.getId())
+                    .build();
+
+
+        } else {
+            throw new PersonNotFoundException(id);
+        }
+    }
+
     public void deleteById(Long id) throws PersonNotFoundException{
 
         verifyIfExists(id);
