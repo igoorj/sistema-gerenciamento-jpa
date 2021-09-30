@@ -4,6 +4,8 @@
 @email: goncalvesigor67@gmail.com
 
 Description: Primeiro projeto de estudos desenvolvido em JPA.
+O Projeto consiste basicamente na construção de um CRUD utilizando REST API, apresentando portanto
+funcionalidades básicas para o gerenciamento de usuários do sistema.
 
 ** Ferramentas:
 
